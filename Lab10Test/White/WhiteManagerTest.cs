@@ -4,7 +4,7 @@
 // namespace Lab10Test.White
 // {
 //     [TestClass]
-//     public sealed class GreenManagerTest
+//     public sealed class WhiteManagerTest
 //     {
 //         private Lab9.White.White[] _tasks;
 //         private string[] _input;
