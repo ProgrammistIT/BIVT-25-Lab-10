@@ -1,0 +1,51 @@
+class Program
+{
+    static void Main(string[] args)
+    {
+        string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        
+        Console.WriteLine(folderPath);
+
+        string fileName = "example.txt";
+
+        string fullPath = Path.Combine(folderPath, fileName);
+        Console.WriteLine(fullPath);
+        
+        File.Create(fullPath).Close();
+        File.WriteAllText(fullPath, "Hello" + Environment.NewLine);
+        File.AppendAllText(fullPath, "World");
+        File.WriteAllText(fullPath, "Hi again");
+
+        string[] words = new string[] {"wohoo", "so", "funny" };
+        File.WriteAllLines(fullPath, words);
+        File.AppendAllLines(fullPath, words);
+        File.AppendAllText(fullPath, "text");
+        File.AppendAllText(fullPath, "text");
+        File.AppendAllText(fullPath, "text");
+        
+        string content = File.ReadAllText(fullPath);
+        string[] lines = File.ReadAllLines(fullPath);
+
+        foreach (string line in lines)
+        {
+            Console.WriteLine(line);
+        }
+        
+        string foldePath2 = Path.Combine(folderPath, "ExampleFolder");
+        string filePath = Path.Combine(foldePath2, "anotherExample");
+        
+        if (!Directory.Exists(foldePath2))
+            Directory.CreateDirectory(foldePath2);
+
+        if (!File.Exists(filePath))
+            File.Create(filePath).Close();
+        else
+            File.WriteAllText(filePath, "");
+
+        string? folderPath3 = Path.GetDirectoryName(folderPath);
+        string fileName2 = Path.GetFileName(filePath);
+        
+        Console.WriteLine(fileName2);
+        Console.WriteLine(folderPath3);
+    }
+}
