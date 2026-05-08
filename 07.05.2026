@@ -1,0 +1,98 @@
+using System.Xml.Serialization;
+
+namespace XMLinClass
+
+{
+    public class Program
+    {
+        public class Movie
+        {
+            private string _name;
+            private int _duration;
+            public int[] _review;
+            public int[] Review => _review;
+            public string Name => _name;
+            public int Duration => _duration;
+            public Movie(string name, int duration)
+            {
+                _name = name;
+                _duration = duration;
+                _review = [];
+            }
+
+            public void AddReview(int rate)
+            {
+                Array.Resize(ref _review, _review.Length + 1);
+                _review[^1] = rate;
+            }
+        }
+
+        public class MovieDTO
+        {
+            public int[] Review { get; set; }
+            public string MovieType { get; set; }
+            public string Name { get; set; }
+            public int Duration { get; set; }
+
+            // конструктор без параметра
+            public MovieDTO()
+            {
+                
+            }
+
+            public MovieDTO(string name, int duration, int[] review) 
+                // movie.GetType() == typeof(movie)
+                // movie.GetType().Name == nameof(Movie)
+            {
+                MovieType = nameof(Movie);
+                Name = name;
+                Duration = duration;
+                Review = review;
+            }
+            public  MovieDTO(Movie movie)
+            {
+                MovieType = movie.GetType().Name;
+                Name = movie.Name;
+                Duration = movie.Duration;
+                Review = movie.Review;
+            }
+        }
+        static void Main(string[] args)
+        {
+            Movie movie1 = new Movie("Harry Potter", 120);
+            MovieDTO movieDto1 = new MovieDTO(movie1);
+            
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string filePath = Path.Combine(folderPath, $"{movie1.Name}.xml");
+            
+            var serializer = new XmlSerializer(typeof(MovieDTO));
+
+            using (var writer = new StreamWriter(filePath))
+            {
+                serializer.Serialize(writer, movieDto1);
+            }
+            
+            // десериализация
+            MovieDTO movieDto2;
+            using (var reader = new StreamReader(filePath))
+            {
+                movieDto2 = (MovieDTO)serializer.Deserialize(reader);
+            }
+            Movie movie2 = new Movie(movieDto2.Name, movieDto2.Duration);
+            foreach (var star in movieDto2.Review)
+                movie2.AddReview(star);
+            
+            Program program = new Program();
+            if (program.CompareMovies(movie1, movie2))
+                Console.WriteLine("Sucess");
+            else
+                Console.WriteLine("Fail");
+        }
+
+        public bool CompareMovies(Movie movie1, Movie movie2)
+        {
+
+            return movie1.Review.Length == movie2.Review.Length && movie1.Duration == movie2.Duration && movie1.Duration == movie2.Duration;
+        }
+    }
+}
