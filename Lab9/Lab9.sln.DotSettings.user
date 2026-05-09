@@ -1,0 +1,11 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7876a086_002D4415_002D4815_002D89e8_002D9cc33e2bb385/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Task2.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Or&gt;
+    &lt;ProjectFile&gt;B2E3F85B-E0BB-5DAC-B080-DF387544CAE1/d:Green/f:Task2.cs&lt;/ProjectFile&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task1&lt;/TestId&gt;
+      &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task3&lt;/TestId&gt;
+      &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task4&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+  &lt;/Or&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
