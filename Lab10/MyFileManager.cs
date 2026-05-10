@@ -1,74 +1,88 @@
-namespace Lab10;
-
-public abstract class MyFileManager : IFileManager, IFileLifeController
+namespace Lab10
 {
-    public string Name { get; private set; }
-    public string FolderPath { get; private set; }
-    public string FileName { get; private set; }
-    public string FileExtension { get; private set; }
-    public string FullPath
+    public abstract class MyFileManager : IFileManager, IFileLifeController
     {
-        get
-        {
-            if (string.IsNullOrEmpty(FileName))
-                return "";
-            
-            if (string.IsNullOrEmpty(FileExtension))
-                return Path.Combine(FolderPath, FileName);
-            
-            return Path.Combine(FolderPath, FileName + (FileExtension.StartsWith(".") ? "" : ".") + FileExtension);
-        }
-    }
+        public string Name { get; private set; }
+        public string FolderPath { get; private set; }
+        public string FileName { get; private set; }
+        public string FileExtension { get; private set; }
+        public string FullPath => Path.Combine(FolderPath, $"{FileName}.{FileExtension}");
 
-    protected MyFileManager(string name)
-    {
-        Name = name;
-        FolderPath = "";
-        FileName = "";
-        FileExtension = "";
-    }
-    protected MyFileManager(string name, string folderPath, string fileName, string fileExtension = "") : this(name)
-    {
-        FolderPath = folderPath;
-        FileName = fileName;
-        FileExtension = fileExtension;
-    }
-    
-    // методы IFileManager
-    public virtual void SelectFolder(string path) { FolderPath = path; }
-    public virtual void ChangeFileName(string fileName) { FileName = fileName; }
-    public virtual void ChangeFileFormat(string fileFormat) { FileExtension = fileFormat; }
-    
-    // методы IFileLifeController
-    public virtual void CreateFile()
-    {
-        if (!Directory.Exists(FolderPath) && !string.IsNullOrEmpty(FolderPath))
-            Directory.CreateDirectory(FolderPath);
-        if (!string.IsNullOrEmpty(FullPath))
-            File.Create(FullPath).Dispose();
-    }
-    public virtual void DeleteFile()
-    {
-        if (File.Exists(FullPath))
-            File.Delete(FullPath);
-    }
-    public virtual void EditFile(string content)
-    {
-        if (File.Exists(FullPath))
+        public MyFileManager(string name)
         {
+            Name = name;
+            FolderPath = "";
+            FileName = "";
+            FileExtension = "txt";
+        }
+
+        public MyFileManager(string name, string folder, string fileName, string extension = "txt")
+        {
+            Name = name;
+            FolderPath = folder;
+            FileName = fileName;
+            FileExtension = extension;
+        }
+
+        public virtual void ChangeFileExtension(string fileExtension)
+        {
+            if (File.Exists(FullPath))
+            {
+                string content = File.ReadAllText(FullPath);
+                File.Delete(FullPath);
+                FileExtension = fileExtension;
+                File.WriteAllText(FullPath, content);
+            }
+            else
+            {
+                FileExtension = fileExtension;
+            }
+        }
+
+        public virtual void CreateFile()
+        {
+            if (!string.IsNullOrEmpty(FolderPath) && !Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+            if (!File.Exists(FullPath))
+            {
+                File.Create(FullPath).Close();
+            }
+        }
+
+        public virtual void DeleteFile()
+        {
+            if (File.Exists(FullPath))
+            {
+                File.Delete(FullPath);
+            }
+        }
+
+        public virtual void EditFile(string content)
+        {
+            if (!File.Exists(FullPath)) return;
             File.WriteAllText(FullPath, content);
         }
-    }
 
-    public virtual void ChangeFileExtension(string newExtension)
-    {
-        if (File.Exists(FullPath))
+        public void ChangeFileFormat(string fileFormat)
         {
-            string oldPath = FullPath;
-            FileExtension = newExtension;
-            if (oldPath != FullPath) File.Move(oldPath, FullPath);
+            FileExtension = fileFormat;
+            if (!string.IsNullOrEmpty(FolderPath) && !string.IsNullOrEmpty(FileName))
+            {
+                if (!Directory.Exists(FolderPath)) Directory.CreateDirectory(FolderPath);
+                if (!File.Exists(FullPath)) File.Create(FullPath).Close();
+            }
         }
-        else
-            FileExtension = newExtension;
+
+        public void ChangeFileName(string fileName)
+        {
+            FileName = fileName;
+        }
+
+        public void SelectFolder(string path)
+        {
+            FolderPath = path;
+        }
     }
 }
