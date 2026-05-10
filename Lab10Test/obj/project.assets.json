@@ -1237,6 +1237,24 @@
         "runtime": {
           "bin/placeholder/Lab9.dll": {}
         }
+      },
+      "Lab9Test/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Lab9": "1.0.0",
+          "MSTest": "3.6.4",
+          "Microsoft.NET.Test.Sdk": "17.12.0",
+          "Microsoft.Playwright.MSTest": "1.49.0",
+          "Microsoft.Testing.Extensions.CodeCoverage": "17.12.6",
+          "Microsoft.Testing.Extensions.TrxReport": "1.4.3"
+        },
+        "compile": {
+          "bin/placeholder/Lab9Test.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lab9Test.dll": {}
+        }
       }
     }
   },
@@ -3134,11 +3152,17 @@
       "type": "project",
       "path": "../Lab9/Lab9.csproj",
       "msbuildProject": "../Lab9/Lab9.csproj"
+    },
+    "Lab9Test/1.0.0": {
+      "type": "project",
+      "path": "../Lab9Test/Lab9Test.csproj",
+      "msbuildProject": "../Lab9Test/Lab9Test.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "Lab10 >= 1.0.0",
+      "Lab9Test >= 1.0.0",
       "MSTest >= 3.6.4",
       "Microsoft.NET.Test.Sdk >= 17.12.0",
       "Microsoft.Playwright.MSTest >= 1.49.0",
@@ -3174,6 +3198,9 @@
           "projectReferences": {
             "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab10/Lab10.csproj": {
               "projectPath": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab10/Lab10.csproj"
+            },
+            "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab9Test/Lab9Test.csproj": {
+              "projectPath": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab9Test/Lab9Test.csproj"
             }
           }
         }

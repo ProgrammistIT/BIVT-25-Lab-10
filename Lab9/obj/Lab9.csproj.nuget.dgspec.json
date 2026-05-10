@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mac/RiderProjects/BIVT-25-Lab-9/Lab9/Lab9.csproj": {}
+    "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab9/Lab9.csproj": {}
   },
   "projects": {
-    "/Users/mac/RiderProjects/BIVT-25-Lab-9/Lab9/Lab9.csproj": {
+    "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab9/Lab9.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mac/RiderProjects/BIVT-25-Lab-9/Lab9/Lab9.csproj",
+        "projectUniqueName": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab9/Lab9.csproj",
         "projectName": "Lab9",
-        "projectPath": "/Users/mac/RiderProjects/BIVT-25-Lab-9/Lab9/Lab9.csproj",
+        "projectPath": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab9/Lab9.csproj",
         "packagesPath": "/Users/mac/.nuget/packages/",
-        "outputPath": "/Users/mac/RiderProjects/BIVT-25-Lab-9/Lab9/obj/",
+        "outputPath": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab9/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/mac/.nuget/NuGet/NuGet.Config"
