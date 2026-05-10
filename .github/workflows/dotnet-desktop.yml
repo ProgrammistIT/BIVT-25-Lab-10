@@ -77,7 +77,7 @@ jobs:
           Write-Host "Building test project..."
           dotnet build $proj -c $Env:CFG
 
-          $dll = Join-Path $PWD "Lab9test\bin\$Env:CFG\net8.0\Lab9test.dll"
+          $dll = Join-Path $PWD "Lab9test\bin\$Env:CFG\net9.0\Lab9test.dll"
           if (-not (Test-Path $dll)) {
             Write-Error "DLL не найдена: $dll"
             exit 1
