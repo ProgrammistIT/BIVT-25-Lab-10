@@ -1,5 +1,4 @@
-﻿//
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text.Json;
 
 namespace Lab9Test.Green

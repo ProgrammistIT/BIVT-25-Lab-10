@@ -3143,6 +3143,7 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "Lab10 >= 1.0.0",
+      "Lab9 >= 1.0.0",
       "MSTest >= 3.6.4",
       "Microsoft.NET.Test.Sdk >= 17.12.0",
       "Microsoft.Playwright.MSTest >= 1.49.0",
@@ -3151,32 +3152,36 @@
     ]
   },
   "packageFolders": {
-    "/home/error/.nuget/packages/": {}
+    "/Users/mac/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/error/code/misis/BIVT-25-Lab-10/Lab10Test/Lab10Test.csproj",
+      "projectUniqueName": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab10Test/Lab10Test.csproj",
       "projectName": "Lab10Test",
-      "projectPath": "/home/error/code/misis/BIVT-25-Lab-10/Lab10Test/Lab10Test.csproj",
-      "packagesPath": "/home/error/.nuget/packages/",
-      "outputPath": "/home/error/code/misis/BIVT-25-Lab-10/Lab10Test/obj/",
+      "projectPath": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab10Test/Lab10Test.csproj",
+      "packagesPath": "/Users/mac/.nuget/packages/",
+      "outputPath": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab10Test/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/error/.nuget/NuGet/NuGet.Config"
+        "/Users/mac/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/home/error/code/misis/BIVT-25-Lab-10/Lab10/Lab10.csproj": {
-              "projectPath": "/home/error/code/misis/BIVT-25-Lab-10/Lab10/Lab10.csproj"
+            "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab10/Lab10.csproj": {
+              "projectPath": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab10/Lab10.csproj"
+            },
+            "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab9/Lab9.csproj": {
+              "projectPath": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab9/Lab9.csproj"
             }
           }
         }
@@ -3191,7 +3196,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -3229,22 +3234,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[9.0.14, 9.0.14]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.linux-x64",
-            "version": "[9.0.14, 9.0.14]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.104/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

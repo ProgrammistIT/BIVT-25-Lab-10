@@ -8,24 +8,25 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/home/error/.nuget/packages/": {}
+    "/Users/mac/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/error/code/misis/BIVT-25-Lab-10/Lab9/Lab9.csproj",
+      "projectUniqueName": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab9/Lab9.csproj",
       "projectName": "Lab9",
-      "projectPath": "/home/error/code/misis/BIVT-25-Lab-10/Lab9/Lab9.csproj",
-      "packagesPath": "/home/error/.nuget/packages/",
-      "outputPath": "/home/error/code/misis/BIVT-25-Lab-10/Lab9/obj/",
+      "projectPath": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab9/Lab9.csproj",
+      "packagesPath": "/Users/mac/.nuget/packages/",
+      "outputPath": "/Users/mac/RiderProjects/BIVT-25-Lab-10/Lab9/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/error/.nuget/NuGet/NuGet.Config"
+        "/Users/mac/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -44,7 +45,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -60,22 +61,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.25, 8.0.25]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.linux-x64",
-            "version": "[8.0.25, 8.0.25]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.104/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
