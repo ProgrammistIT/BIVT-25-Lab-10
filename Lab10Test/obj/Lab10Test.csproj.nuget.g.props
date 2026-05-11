@@ -4,13 +4,13 @@
     <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
-    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/Users/mac/.nuget/packages/</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/Users/mac/.nuget/packages/</NuGetPackageFolders>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/home/error/.nuget/packages/</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/home/error/.nuget/packages/</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">7.0.0</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="/Users/mac/.nuget/packages/" />
+    <SourceRoot Include="/home/error/.nuget/packages/" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.testing.platform/1.4.3/buildTransitive/net8.0/Microsoft.Testing.Platform.props" Condition="Exists('$(NuGetPackageRoot)microsoft.testing.platform/1.4.3/buildTransitive/net8.0/Microsoft.Testing.Platform.props')" />
@@ -24,6 +24,6 @@
     <Import Project="$(NuGetPackageRoot)microsoft.testing.extensions.codecoverage/17.12.6/buildTransitive/net6.0/Microsoft.Testing.Extensions.CodeCoverage.props" Condition="Exists('$(NuGetPackageRoot)microsoft.testing.extensions.codecoverage/17.12.6/buildTransitive/net6.0/Microsoft.Testing.Extensions.CodeCoverage.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgMSTest_Analyzers Condition=" '$(PkgMSTest_Analyzers)' == '' ">/Users/mac/.nuget/packages/mstest.analyzers/3.6.4</PkgMSTest_Analyzers>
+    <PkgMSTest_Analyzers Condition=" '$(PkgMSTest_Analyzers)' == '' ">/home/error/.nuget/packages/mstest.analyzers/3.6.4</PkgMSTest_Analyzers>
   </PropertyGroup>
 </Project>
