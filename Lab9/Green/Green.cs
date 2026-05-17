@@ -2,20 +2,17 @@
 
 public abstract class Green
 {
-    private string _input;
-
-    public string Input => _input;
-
-    protected Green(string text)
+    public string Input { get; private set; }
+    protected Green(string input)
     {
-        _input = text ?? string.Empty;
+        Input = input ?? string.Empty;
     }
 
     public abstract void Review();
 
     public virtual void ChangeText(string text)
     {
-        _input = text ?? string.Empty;
+        Input = text ?? string.Empty;
         Review();
     }
 }

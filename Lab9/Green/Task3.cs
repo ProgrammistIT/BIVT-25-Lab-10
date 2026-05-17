@@ -6,14 +6,14 @@ namespace Lab9.Green;
 
 public class Task3 : Green
 {
-    private string _pattern;
     private string[] _output;
 
+    public string Pattern { get; private set; }
     public string[] Output => _output.ToArray();
 
     public Task3(string text, string pattern) : base(text)
     {
-        _pattern = pattern ?? string.Empty;
+        Pattern = pattern ?? string.Empty;
         _output = [];
     }
 
@@ -21,12 +21,12 @@ public class Task3 : Green
     {
         _output = [];
 
-        if (string.IsNullOrEmpty(Input) || string.IsNullOrEmpty(_pattern))
+        if (string.IsNullOrEmpty(Input) || string.IsNullOrEmpty(Pattern))
         {
             return;
         }
 
-        string loweredPattern = _pattern.ToLower();
+        string loweredPattern = Pattern.ToLower();
         string[] allWords = ExtractWords(Input);
         string[] result = [];
 

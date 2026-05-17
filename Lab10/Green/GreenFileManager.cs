@@ -20,7 +20,6 @@ public abstract class GreenFileManager : MyFileManager, ISerializer
         if (string.IsNullOrEmpty(FullPath)) return;
         base.ChangeFileExtension(newExtension);
     }
-
     public abstract T Deserialize<T>() where T : Lab9.Green.Green;
     public abstract void Serialize<T>(T obj) where T : Lab9.Green.Green;
 }

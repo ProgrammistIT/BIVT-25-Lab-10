@@ -1,133 +1,68 @@
-using System.Reflection;
+using Lab9.Green;
 
-namespace Lab10.Green
+namespace Lab10.Green;
+
+public class GreenTxtFileManager : GreenFileManager
 {
-    public class GreenTxtFileManager : GreenFileManager
+    public GreenTxtFileManager(string name) : base(name)
     {
-        public GreenTxtFileManager(string name) : base(name) { }
-
-        public GreenTxtFileManager(string name, string folder, string fileName, string extension = "txt")
-            : base(name, folder, fileName, extension) { }
-
-        public override void EditFile(string input)
-        {
-            if (File.Exists(FullPath))
-            {
-                var obj = Deserialize<Lab9.Green.Green>();
-                if (obj != null)
-                {
-                    obj.ChangeText(input);
-                    Serialize(obj);
-                }
-            }
-        }
-
-        public override void ChangeFileExtension(string input)
-        {
-            ChangeFileFormat("txt");
-        }
-
-        public override void Serialize<T>(T obj)
-{
-    if (obj == null || string.IsNullOrEmpty(FullPath)) return;
-
-    var lines = new System.Collections.Generic.List<string>();
-    lines.Add($"TypeName={obj.GetType().FullName}");
-
-    Type type = obj.GetType();
-    while (type != null && type != typeof(object))
-    {
-        foreach (var field in type.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
-            lines.Add($"{field.Name}={field.GetValue(obj)}");
-        type = type.BaseType;
+        ChangeFileFormat("txt");
     }
 
-    File.WriteAllText(FullPath, string.Join(Environment.NewLine, lines));
-}
+    public GreenTxtFileManager(string name, string folderPath, string fileName, string fileExtension = "txt")
+        : base(name, folderPath, fileName, fileExtension) { }
 
-        public override T Deserialize<T>()
+    public override void EditFile(string content)
+    {
+        if (!File.Exists(FullPath)) return;
+        var obj = Deserialize<Lab9.Green.Green>();
+        if (obj == null) return;
+        obj.ChangeText(content);
+        Serialize(obj);
+    }
+
+    public override void ChangeFileExtension(string newExtension) => ChangeFileFormat("txt");
+
+    public override void Serialize<T>(T obj)
+    {
+        if (obj == null || string.IsNullOrEmpty(FullPath)) return;
+        
+        var lines = new List<string>
         {
-            if (!File.Exists(FullPath)) return null;
-            try
+            $"TypeName={obj.GetType().Name}",
+            $"Input={obj.Input ?? string.Empty}"
+        };
+        
+        if (obj is Task3 task3)
+            lines.Add($"Pattern={task3.Pattern ?? string.Empty}");
+        
+        File.WriteAllText(FullPath, string.Join(Environment.NewLine, lines));
+    }
+
+    public override T Deserialize<T>()
+    {
+        if (!File.Exists(FullPath)) return default;
+            var data = File.ReadAllLines(FullPath)
+                .Where(l => !string.IsNullOrWhiteSpace(l))
+                .Select(l => l.Split(['='], 2))
+                .Where(p => p.Length == 2)
+                .ToDictionary(p => p[0], p => p[1]);
+            
+            if (!data.TryGetValue("TypeName", out var typeName)) return default;
+
+            string input = data.GetValueOrDefault("Input", string.Empty);
+            string pattern = data.GetValueOrDefault("Pattern", string.Empty);
+            
+            Lab9.Green.Green? result = typeName switch
             {
-                var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-                foreach (string line in File.ReadAllLines(FullPath))
-                {
-                    int sep = line.IndexOf('=');
-                    if (sep < 0) continue;
-                    dict[line.Substring(0, sep)] = line.Substring(sep + 1);
-                }
-
-                Type actualType = typeof(T);
-                if (dict.TryGetValue("TypeName", out string typeName))
-                {
-                    var found = AppDomain.CurrentDomain.GetAssemblies()
-                        .Select(a => a.GetType(typeName)).FirstOrDefault(t => t != null);
-                    if (found != null) actualType = found;
-                }
-
-                // Пробуем все конструкторы, включая непубличные
-                object obj = null;
-                var ctors = actualType
-                    .GetConstructors(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                    .OrderByDescending(c => c.GetParameters().Length);
-                foreach (var ctor in ctors)
-                {
-                    var pInfos = ctor.GetParameters();
-                    var args = new object[pInfos.Length];
-                    for (int i = 0; i < pInfos.Length; i++)
-                    {
-                        // Ищем по имени параметра среди полей
-                        string match = dict.Keys.FirstOrDefault(k =>
-                            k.ToLower() == pInfos[i].Name.ToLower() ||
-                            k.ToLower() == "_" + pInfos[i].Name.ToLower() ||
-                            k.ToLower().Contains(pInfos[i].Name.ToLower()));
-                        args[i] = match != null ? dict[match] : string.Empty;
-                    }
-
-                    try
-                    {
-                        obj = ctor.Invoke(args);
-                        break;
-                    }
-                    catch
-                    {
-                    }
-                }
-
-                if (obj == null) return null;
-                
-                Type t = actualType;
-                while (t != null && t != typeof(object))
-                {
-                    foreach (var field in t.GetFields(BindingFlags.Instance | BindingFlags.Public |
-                                                      BindingFlags.NonPublic))
-                    {
-                        if (dict.TryGetValue(field.Name, out string val))
-                        {
-                            try
-                            {
-                                if (field.FieldType == typeof(string)) field.SetValue(obj, val);
-                                else if (field.FieldType == typeof(int)) field.SetValue(obj, int.Parse(val));
-                                else if (field.FieldType == typeof(double)) field.SetValue(obj, double.Parse(val));
-                            }
-                            catch
-                            {
-                            }
-                        }
-                    }
-
-                    t = t.BaseType;
-                }
-
-                var result = (T)obj;
-                result?.Review();
-                return result;
-            }
-            catch
-            {
-                return null;
-            }
-        }
+                nameof(Task1) => new Task1(input),
+                nameof(Task2) => new Task2(input),
+                nameof(Task3) => new Task3(input, pattern),
+                nameof(Task4) => new Task4(input),
+                _ => null
+            };
+            
+            result?.Review();
+            return result is T typed ? typed : default;
     }
 }
